@@ -1,0 +1,256 @@
+/* ==========================================
+   VARIABLES DE IDENTIDAD CORPORATIVA (ROOT)
+   ========================================== */
+:root {
+    /* Colores institucionales de Gymboree */
+    --gymbo-orange: #F39200;      /* Color base principal (Precios) */
+    --gymbo-blue: #00A3E0;        /* Color secundario (Títulos de producto) */
+    --gymbo-green: #78B833;       /* Color de éxito/disponibilidad (Stock y Botón Activo) */
+    --gymbo-magenta: #E5007D;     /* Color de acento/alertas alternas */
+    --gymbo-yellow: #FFD100;      /* Bordes divertidos e iluminación */
+
+    /* Estructura general */
+    --bg-pantalla: #FFFDF3;       /* Crema suave muy amigable para pantallas de eventos largos */
+    --bg-tarjeta: #FFFFFF;        /* Contenedores limpios */
+    --texto-principal: #4A4A4A;   /* Gris oscuro para alta lectura sin cansar la vista */
+    
+    --border-radius-tarjeta: 24px;
+    --sombra-suave: 0 10px 30px rgba(243, 146, 0, 0.06);
+}
+
+/* ==========================================
+   ESTILOS GENERALES Y LAYOUT
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-pantalla);
+    color: var(--texto-principal);
+}
+
+.hero-logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-logo img {
+    max-width: 260px;
+    height: auto;
+}
+
+.inventario-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Contenedor flexible para alinear tus tarjetas */
+.inventario-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* ==========================================
+   ESTRUCTURA DE TU TARJETA (.product-peluche)
+   ========================================== */
+.product-peluche {
+    background-color: var(--bg-tarjeta);
+    border: 3px solid var(--gymbo-yellow); /* Borde alegre de la marca */
+    border-radius: var(--border-radius-tarjeta);
+    box-shadow: var(--sombra-suave);
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Efecto hover interactivo para el evento */
+.product-peluche:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(243, 146, 0, 0.12);
+}
+
+/* Nombre del Producto basado en tu h2 */
+.product-peluche h2 {
+    color: var(--gymbo-blue);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Imagen del peluche */
+.product-peluche img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    background-color: #FAFAFA; 
+}
+
+/* Contenedor del Stock */
+.stock-product {
+    background-color: #FFFDF3;
+    border: 2px solid var(--gymbo-green);
+    border-radius: 12px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gymbo-green);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.stock-product span {
+    font-size: 1.2rem;
+    margin-left: 4px;
+}
+
+.precio-Producto {
+    background-color: var(--gymbo-orange);
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(243, 146, 0, 0.2);
+    display: inline-block;
+}
+
+.precio-Producto:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+/* --- CATEGORÍA DESPLEGABLE --- */
+.categoria-desplegable {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #ffffff;
+    border: 3px solid #ffcc00; /* Borde amarillo Gymboree */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.categoria-desplegable[open] {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Barra del título (Boton desplegable) */
+.titulo-categoria {
+    padding: 18px 28px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0099cc; /* Azul distintivo Gymboree */
+    background: #fffdf0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* Quita el triángulo por defecto */
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+/* Ocultar flecha nativa en Chrome / Safari / Edge */
+.titulo-categoria::-webkit-details-marker {
+    display: none;
+}
+
+.titulo-categoria:hover {
+    background-color: #fff8d6;
+}
+
+/* Estilo y rotación de la flecha personalizada */
+.flecha {
+    font-size: 1.2rem;
+    color: #ff9900;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.categoria-desplegable[open] .flecha {
+    transform: rotate(180deg);
+}
+
+/* Animación de apertura suave para el contenido interno */
+.categoria-desplegable .inventario-content {
+    padding: 25px 15px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#btn-api-control {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 14px 24px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.indicador-luz {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Estado APAGADO / PAUSADO (Gris neutro) */
+.api-btn-pausado {
+    background-color: #E0E0E0;
+    color: #555555;
+}
+.api-btn-pausado .indicador-luz {
+    background-color: #888888;
+}
+
+/* Estado ACTIVO / EN VIVO (Verde corporativo con pulso de luz) */
+.api-btn-activo {
+    background-color: var(--gymbo-green);
+    color: #FFFFFF;
+}
+.api-btn-activo .indicador-luz {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px #FFFFFF;
+    animation: pulsoLuz 1.5s infinite;
+}
+
+/* Animación para simular que el botón está "transmitiendo" en vivo */
+@keyframes pulsoLuz {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
